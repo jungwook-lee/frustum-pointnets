@@ -15,7 +15,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 sys.path.append(BASE_DIR)
 sys.path.append(os.path.join(ROOT_DIR, 'mayavi'))
 import kitti_util as utils
-import cPickle as pickle
+import _pickle as pickle
 from kitti_object import *
 import argparse
 
@@ -61,24 +61,24 @@ def demo():
     #print(' -------- LiDAR points in rect camera coordination --------')
     #pc_rect = calib.project_velo_to_rect(pc_velo)
     #fig = draw_lidar_simple(pc_rect)
-    #raw_input()
+    #input()
 
     # Draw 2d and 3d boxes on image
     print(' -------- 2D/3D bounding boxes in images --------')
     show_image_with_boxes(img, objects, calib)
-    raw_input()
+    input()
 
     # Show all LiDAR points. Draw 3d box in LiDAR point cloud
     print(' -------- LiDAR points and 3D boxes in velodyne coordinate --------')
     #show_lidar_with_boxes(pc_velo, objects, calib)
-    #raw_input()
+    #input()
     show_lidar_with_boxes(pc_velo, objects, calib, True, img_width, img_height)
-    raw_input()
+    input()
 
     # Visualize LiDAR points on images
     print(' -------- LiDAR points projected to image plane --------')
     show_lidar_on_image(pc_velo, img, calib, img_width, img_height) 
-    raw_input()
+    input()
     
     # Show LiDAR points that are in the 3d box
     print(' -------- LiDAR points in a 3D bounding box --------')
@@ -92,7 +92,7 @@ def demo():
     draw_lidar(box3droi_pc_velo, fig=fig)
     draw_gt_boxes3d([box3d_pts_3d_velo], fig=fig)
     mlab.show(1)
-    raw_input()
+    input()
     
     # UVDepth Image and its backprojection to point clouds
     print(' -------- LiDAR points in a frustum from a 2D box --------')
@@ -113,7 +113,7 @@ def demo():
     fig = mlab.figure(figure=None, bgcolor=(0,0,0),
         fgcolor=None, engine=None, size=(1000, 500))
     draw_lidar(backprojected_pc_velo, fig=fig)
-    raw_input()
+    input()
 
     # Only display those points that fall into 2d box
     print(' -------- LiDAR points in a frustum from a 2D box --------')
@@ -127,7 +127,7 @@ def demo():
         fgcolor=None, engine=None, size=(1000, 500))
     draw_lidar(boxfov_pc_velo, fig=fig)
     mlab.show(1)
-    raw_input()
+    input()
 
 def random_shift_box2d(box2d, shift_ratio=0.1):
     ''' Randomly shift box center, randomly scale width and height 
@@ -275,7 +275,7 @@ def extract_frustum_data(idx_filename, split, output_filename, viz=False,
                 fgcolor=None, engine=None, size=(500, 500))
             mlab.points3d(p1[:,2], -p1[:,0], -p1[:,1], seg, mode='point',
                 colormap='gnuplot', scale_factor=1, figure=fig)
-            raw_input()
+            input()
 
 def get_box3d_dim_statistics(idx_filename):
     ''' Collect and dump 3D bounding box statistics '''
@@ -419,7 +419,7 @@ def extract_frustum_data_rgb_detection(det_filename, split, output_filename,
                 fgcolor=None, engine=None, size=(500, 500))
             mlab.points3d(p1[:,2], -p1[:,0], -p1[:,1], seg, mode='point',
                 colormap='gnuplot', scale_factor=1, figure=fig)
-            raw_input()
+            input()
 
 def write_2d_rgb_detection(det_filename, split, result_dir):
     ''' Write 2D detection results for KITTI evaluation.
