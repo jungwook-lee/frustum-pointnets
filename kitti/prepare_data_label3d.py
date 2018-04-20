@@ -191,6 +191,9 @@ def extract_frustum_data(idx_filename, split, output_filename, viz=False,
                 _, inds = extract_pc_in_box3d(pc_rect, box3d_pts_3d)
 
                 # Find a random point
+                if len(inds) == 0:
+                    continue
+
                 while True:
                     index = random.randint(0, len(inds) - 1)
                     if inds[index]:
