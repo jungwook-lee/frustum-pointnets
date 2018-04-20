@@ -193,15 +193,15 @@ def extract_frustum_data(idx_filename, split, output_filename, viz=False,
                 # Find a random point
                 if len(inds) == 0:
                     continue
-
+                pos_ind_list = [i for i in range(len(inds)) if i]
                 while True:
-                    index = random.randint(0, len(inds) - 1)
+                    index = random.choice(pos_ind_list)
                     if inds[index]:
                         click_pts_id = index
                         break
 
                 click_pt = pc_rect[click_pts_id, 0:3]
-                print(click_pt)
+                # print(click_pt)
 
                 # filter points from a cubic area
                 # obj_center = objects[obj_idx].t
@@ -256,7 +256,7 @@ def extract_frustum_data(idx_filename, split, output_filename, viz=False,
                 # gt_centroid = obj.obj_center
                 frustum_angle = -1 * np.arctan2(click_pt[2],
                                                 click_pt[0])
-                print(frustum_angle)
+                # print(frustum_angle)
 
                 # 3D BOX: Get pts velo in 3d box
                 obj = objects[obj_idx]
