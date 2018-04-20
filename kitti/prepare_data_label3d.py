@@ -340,7 +340,7 @@ if __name__=='__main__':
 
     if args.gen_train:
         extract_frustum_data(\
-            os.path.join(BASE_DIR, 'image_sets/train_mini.txt'),
+            os.path.join(BASE_DIR, 'image_sets/train.txt'),
             'training',
             os.path.join(BASE_DIR, output_prefix+'train.pickle'), 
             viz=False, perturb_box=True, augmentX=5,
@@ -348,7 +348,7 @@ if __name__=='__main__':
 
     if args.gen_val:
         extract_frustum_data(\
-            os.path.join(BASE_DIR, 'image_sets/val_mini.txt'),
+            os.path.join(BASE_DIR, 'image_sets/val.txt'),
             'training',
             os.path.join(BASE_DIR, output_prefix+'val.pickle'),
             viz=False, perturb_box=False, augmentX=1,
