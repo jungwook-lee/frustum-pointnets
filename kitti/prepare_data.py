@@ -12,11 +12,11 @@ import cv2
 from PIL import Image
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
-sys.path.append(BASE_DIR)
-sys.path.append(os.path.join(ROOT_DIR, 'mayavi'))
-import kitti_util as utils
+# sys.path.append(BASE_DIR)
+# sys.path.append(os.path.join(ROOT_DIR, 'viz'))
+import kitti.kitti_util as utils
 import _pickle as pickle
-from kitti_object import *
+from kitti.kitti_object import *
 import argparse
 
 
@@ -43,7 +43,7 @@ def extract_pc_in_box2d(pc, box2d):
      
 def demo():
     import mayavi.mlab as mlab
-    from viz_util import draw_lidar, draw_lidar_simple, draw_gt_boxes3d
+    from viz.viz_util import draw_lidar, draw_lidar_simple, draw_gt_boxes3d
     dataset = kitti_object(os.path.join(ROOT_DIR, 'dataset/KITTI/object'))
     data_idx = 0
 
@@ -491,7 +491,7 @@ if __name__=='__main__':
 
     if args.gen_val:
         extract_frustum_data(\
-            os.path.join(BASE_DIR, 'image_sets/val.txt'),
+            os.path.join(BASE_DIR, 'image_sets/val_mini.txt'),
             'training',
             os.path.join(BASE_DIR, output_prefix+'val.pickle'),
             viz=False, perturb_box2d=False, augmentX=1,

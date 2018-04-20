@@ -5,21 +5,21 @@ Date: September 2017
 '''
 from __future__ import print_function
 
-import cPickle as pickle
+import _pickle as pickle
 import sys
 import os
 import numpy as np
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
-sys.path.append(BASE_DIR)
-sys.path.append(os.path.join(ROOT_DIR,'models'))
-from box_util import box3d_iou
-from model_util import g_type2class, g_class2type, g_type2onehotclass
-from model_util import g_type_mean_size
-from model_util import NUM_HEADING_BIN, NUM_SIZE_CLUSTER
+# sys.path.append(BASE_DIR)
+# sys.path.append(os.path.join(ROOT_DIR,'models'))
+from trainer.box_util import box3d_iou
+from models.model_util import g_type2class, g_class2type, g_type2onehotclass
+from models.model_util import g_type_mean_size
+from models.model_util import NUM_HEADING_BIN, NUM_SIZE_CLUSTER
 
 try:
-    raw_input          # Python 2
+    input          # Python 2
 except NameError:
     raw_input = input  # Python 3
 
@@ -354,8 +354,8 @@ def from_prediction_to_label_format(center, angle_class, angle_res,\
 
 if __name__=='__main__':
     import mayavi.mlab as mlab 
-    sys.path.append(os.path.join(ROOT_DIR, 'mayavi'))
-    from viz_util import draw_lidar, draw_gt_boxes3d
+    # sys.path.append(os.path.join(ROOT_DIR, 'viz'))
+    from viz.viz_util import draw_lidar, draw_gt_boxes3d
     median_list = []
     dataset = FrustumDataset(1024, split='val',
         rotate_to_center=True, random_flip=True, random_shift=True)
@@ -377,5 +377,5 @@ if __name__=='__main__':
         mlab.points3d(0, 0, 0, color=(1,1,1), mode='sphere', scale_factor=0.2, figure=fig)
         draw_gt_boxes3d([box3d_from_label], fig, color=(1,0,0))
         mlab.orientation_axes()
-        raw_input()
+        input()
     print(np.mean(np.abs(median_list)))

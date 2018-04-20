@@ -1,4 +1,4 @@
-''' Visualization code for point clouds and 3D bounding boxes with mayavi.
+''' Visualization code for point clouds and 3D bounding boxes with viz.
 
 Modified by Charles R. Qi
 Date: September 2017
@@ -40,7 +40,7 @@ def draw_lidar(pc, color=None, fig=None, bgcolor=(0,0,0), pts_scale=1, pts_mode=
     Args:
         pc: numpy array (n,3) of XYZ
         color: numpy array (n) of intensity or whatever
-        fig: mayavi figure handler, if None create new one otherwise will use it
+        fig: viz figure handler, if None create new one otherwise will use it
     Returns:
         fig: created or used fig
     '''
@@ -95,7 +95,7 @@ def draw_gt_boxes3d(gt_boxes3d, fig, color=(1,1,1), line_width=1, draw_text=True
     ''' Draw 3D bounding boxes
     Args:
         gt_boxes3d: numpy array (n,8,3) for XYZs of the box corners
-        fig: mayavi figure handler
+        fig: viz figure handler
         color: RGB value tuple in range (0,1), box line color
         line_width: box line width
         draw_text: boolean, if true, write box indices beside boxes
@@ -126,7 +126,7 @@ def draw_gt_boxes3d(gt_boxes3d, fig, color=(1,1,1), line_width=1, draw_text=True
 
 
 if __name__=='__main__':
-    pc = np.loadtxt('mayavi/kitti_sample_scan.txt')
+    pc = np.loadtxt('viz/kitti_sample_scan.txt')
     fig = draw_lidar(pc)
     mlab.savefig('pc_view.jpg', figure=fig)
     raw_input()
