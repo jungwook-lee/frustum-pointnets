@@ -148,7 +148,7 @@ def extract_frustum_data(idx_filename, split, output_filename, viz=False,
     all_cnt = 0
 
     for data_idx in data_idx_list:
-        print('------------- ', data_idx)
+        print('Processing data id of {}/{} ... ', data_idx)
         calib = dataset.get_calibration(data_idx) # 3 by 4 matrix
         objects = dataset.get_label_objects(data_idx)
         pc_velo = dataset.get_lidar(data_idx)
